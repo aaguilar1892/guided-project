@@ -1,9 +1,27 @@
 import Card from './Card';
 import data from '../data/data.json';
+import { useState, useEffect } from 'react';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../firebase/firebase';
  
 function Dashboard() {
-    console.log(data);
     // Insert state to store items, initialized with data from JSON file
+    const [items, setItems] = useState([]);
+
+    const fetchData = async () => {
+        try {
+          const querySnapshot = await getDocs(collection(db, "invitees"));
+          const dataArray = querySnapshot.docs.map(doc => doc.data());
+          setItems(dataArray);
+        } catch (error) {
+          console.error("Error fetching data: ", error);
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+      }, []);
+
     return (
         <div className="relative my-12 flex flex-col items-center">
             {/* TITLE */}
@@ -14,7 +32,7 @@ function Dashboard() {
             <div className="relative z-10 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {/* Map through items and render a Card component for each in the section below */}
                 {/*<Card img='/images/sample1.webp' name='Alan Roybal' bringing='Fruit' status='Going'/>*/}
-                {data.map((object) => (
+                {items.map((object) => (
                     <Card
                         key={object.id}
                         name={object.name}
