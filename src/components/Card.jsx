@@ -1,6 +1,6 @@
 import React from "react";
  
-function Card() {
+function Card(props) {
   return (
     <div className="p-4">
       {/* Card Container with a Gradient Border */}
@@ -9,18 +9,18 @@ function Card() {
         <div className="h-full w-full rounded-2xl bg-white p-4 transition duration-300 hover:scale-105">
           <img
             className="mx-auto my-4 h-40 w-full rounded-xl object-cover shadow-md"
-            src="/images/sample1.webp"
+            src={props.img}
             alt=""
           />
           <div className="space-y-3">
             <h1 className="poppins-semibold text-xl text-darkblue">
-              Alan Roybal
+              {props.name}
             </h1>
             <p className="inter-regular flex py-1 text-sm text-gray-500">
-                Bringing: Fruit
+                {props.bringing}
             </p>
             <p className="inter-semibold text-sm text-emerald-500">
-                Going
+                {props.status}
             </p>
           </div>
         </div>
