@@ -1,17 +1,18 @@
 // Navbar.jsx
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
     <>
         <div className="flex flex-row justify-between items-center px-20 py-4 bg-pastelblue">
-            <div className="text-darkgreen text-3xl poppins-bold hover:text-pastelgreen transition duration-300">
+            <Link to="/" className="text-darkgreen text-3xl poppins-bold hover:text-pastelgreen transition duration-300">
                 Ripple & Refresh
-            </div>
+            </Link>
             <div className="flex flex-row gap-8 poppins-semibold text-2xl text-darkblue">
-                <p className="hover:text-pastelgreen transition duration-300">map</p>
-                <p className="hover:text-pastelgreen transition duration-300">rsvp</p>
-                <p className="hover:text-pastelgreen transition duration-300">activity</p>
+                <Link to="/map" className="hover:text-pastelgreen transition duration-300">map</Link>
+                <Link to='/rsvp' className="hover:text-pastelgreen transition duration-300">rsvp</Link>
+                <Link to='/activity' className="hover:text-pastelgreen transition duration-300">activity</Link>
             </div>
         </div>
         <hr className="w-full border-t-2 border-pastelgreen border-opacity-50" />
